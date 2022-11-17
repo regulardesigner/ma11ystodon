@@ -6,7 +6,8 @@ import Default from "./App.vue";
 const app = createApp(Default);
 
 const axiosInstance = axios.create({
-  withCredentials: true
+  baseURL: 'https://mastodon.social',
+  withCredentials: false
 });
 
 app.config.globalProperties.$axios = { ...axiosInstance };
