@@ -1,6 +1,13 @@
 <template>
-  <header>
-    <h1 class="heading">Ma11ystodon</h1>
+  <header class="mallystodon">
+    <h1 class="heading">{{ `M${search}stodon` }}</h1>
+
+    <form @click.prevent="handleTagSeach">
+      <input type="text" v-model="search">
+      <input type="submit" value="search">
+    </form>
+
+    <span>Toots count: {{ tootsCount }}</span>
 
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">
@@ -10,9 +17,10 @@
   
   <span class="is-loading" v-if="isLoading">loading #a11y toots…</span>
 
-  <article tabindex="0" class="toot" v-for="toot in toots" :key="toot.id">
+  <section class="toots">
+    <article class="toot" v-for="toot in toots" :key="toot.id">
     <header class="user-header">
-      <img class="avatar" width="32" height="32" :src="toot.account.avatar_static" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
+      <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
     </header>
     <div class="large" v-html="toot.content"></div>
 
@@ -21,6 +29,7 @@
       <figcaption class="medium">{{ toot.media_attachments[0].description }}</figcaption>
     </figure>
   </article>
+  </section>
 </template>
 
 <script>
@@ -29,20 +38,40 @@ export default {
 
   data() {
     return {
-      toots: [],
+      search: 'a11y',
+      tootsCount: 0,
+      toots: undefined,
       isLoading: true,
     };
   },
 
   async mounted() {
-    await this.$axios.get(
-      "/api/v1/timelines/tag/a11y?limit=40"
-    ).then(resp => {
-      this.toots = resp.data
-      this.isLoading = false
-    });
-
+     this.mastodonTagSearch(this.search)
   },
+
+  methods: {
+    handleTagSeach() {
+      this.mastodonTagSearch(this.search)
+    },
+
+    async mastodonTagSearch(tag) {
+      await this.$axios.get(
+        `/api/v1/timelines/tag/${tag}?limit=4`
+      ).then(resp => {
+        if (!this.toots) {
+          console.info('Init Toots')
+          this.toots = resp.data
+          this.tootsCount = resp.data.length
+        } else {
+          console.info('More Toots please', resp.data)
+          this.toots.unshift(...resp.data)
+          this.tootsCount = this.toots.length
+
+        }
+        this.isLoading = false
+      });
+    }
+  }
 };
 </script>
 
@@ -61,6 +90,12 @@ body {
 body:has(input[type="checkbox"]:checked) {
    --background-color: #f1f6a5;
    --text-color: #2b584f;
+}
+
+header.mallystodon {
+  display: flex;
+  margin-bottom: 2.4rem;
+  justify-content: space-between;
 }
 
 .switch {
@@ -118,11 +153,16 @@ a {
   hyphens: auto;
 }
 
+.toots {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
 .toot {
   border: 2px solid var(--text-color);
   border-radius: .5rem;
   padding: 1rem;
-  margin-block: 1rem;
+  margin-bottom: 2.4rem;
   line-height: 2rem;
 }
 
