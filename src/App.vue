@@ -12,10 +12,11 @@
 
   <section class="toots">
     <div class="search">
-      <form class="search-form" @click.prevent="handleTagSeach">
+      <form class="search-form" @submit.prevent="handleTagSeach">
         <input class="search-form--input" type="text" v-model="search">
         <input class="search-form--submit" type="submit" value="search">
       </form>
+      
     </div>
     <article class="toot" v-for="toot in toots" :key="toot.id">
     <header class="user-header">
@@ -38,8 +39,9 @@ export default {
   data() {
     return {
       search: 'a11y',
-      tootsCount: 0,
+      searched: [],
       toots: undefined,
+      tootsCount: 0,
       isLoading: true,
     };
   },
@@ -67,8 +69,13 @@ export default {
         }
 
         console.info(`Toots: ${this.tootsCount}`)
+        this.addTagToSearchedList(tag)
         this.isLoading = false
       });
+    },
+
+    addTagToSearchedList(tag) {
+      this.searched.unshift(tag)
     }
   }
 };
