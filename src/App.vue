@@ -2,13 +2,6 @@
   <header class="mallystodon">
     <h1 class="heading">{{ `M${search}stodon` }}</h1>
 
-    <form @click.prevent="handleTagSeach">
-      <input type="text" v-model="search">
-      <input type="submit" value="search">
-    </form>
-
-    <span>Toots count: {{ tootsCount }}</span>
-
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">
       <label for="switch">Color theme inverter</label>
@@ -18,6 +11,12 @@
   <span class="is-loading" v-if="isLoading">loading #a11y toots…</span>
 
   <section class="toots">
+    <div class="search">
+      <form class="search-form" @click.prevent="handleTagSeach">
+        <input class="search-form--input" type="text" v-model="search">
+        <input class="search-form--submit" type="submit" value="search">
+      </form>
+    </div>
     <article class="toot" v-for="toot in toots" :key="toot.id">
     <header class="user-header">
       <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
@@ -59,15 +58,15 @@ export default {
         `/api/v1/timelines/tag/${tag}?limit=4`
       ).then(resp => {
         if (!this.toots) {
-          console.info('Init Toots')
           this.toots = resp.data
           this.tootsCount = resp.data.length
         } else {
-          console.info('More Toots please', resp.data)
           this.toots.unshift(...resp.data)
           this.tootsCount = this.toots.length
 
         }
+
+        console.info(`Toots: ${this.tootsCount}`)
         this.isLoading = false
       });
     }
@@ -97,6 +96,30 @@ header.mallystodon {
   margin-bottom: 2.4rem;
   justify-content: space-between;
 }
+
+.search-form {
+  display: flex;
+  margin-bottom: 1.6rem;
+}
+
+.search-form--input {
+  color: var(--text-color);
+  flex-grow: 1;
+  font-size: 2rem;
+  padding: 0.6rem 0.8rem;
+  border: 0.1rem solid var(--text-color);
+  border-radius: 0.5rem 0 0 0.5rem;
+  background: transparent;
+}
+
+.search-form--submit {
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--background-color);
+  background-color: var(--text-color);
+} 
 
 .switch {
   padding: 0.6rem;
