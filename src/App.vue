@@ -8,20 +8,25 @@
     </div>
   </header>
   
-  <span class="is-loading" v-if="isLoading">loading #a11y toots…</span>
+  <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading toots…</span>
 
-  <section class="toots">
+  <section v-if="!isLoading" class="toots">
     <div class="search">
       <form class="search-form" @submit.prevent="handleTagSeach">
         <input class="search-form--input" type="text" v-model="search">
         <input class="search-form--submit" type="submit" value="search">
       </form>
       
+      <ul class="tags">
+        <li class="tag medium" v-for="tag in searched" :key="tag">{{ tag }}</li>
+      </ul>
+
     </div>
     <article class="toot" v-for="toot in toots" :key="toot.id">
     <header class="user-header">
       <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
     </header>
+
     <div class="large" v-html="toot.content"></div>
 
     <figure v-if="toot.media_attachments.length != 0 && toot.media_attachments[0].type === 'image'">
@@ -149,6 +154,28 @@ header.mallystodon {
   font-size: 1.4rem;
 }
 
+.tags {
+  display: inline-flex;
+  overflow: hidden;
+  list-style: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+  border-radius: 0.5rem;
+  box-shadow: inset black 0px 0px 10px;
+}
+
+.tag {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0 0.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.tag:not(:last-child) {
+  margin-right: 0.5rem;
+}
 
 .heading {
   font-size: 2.4rem;
@@ -240,9 +267,10 @@ figcaption {
   display: block;
   position: absolute;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  top: 45vh;
+  top: calc(50vh - 6.5rem);
+  left: calc(50% - 6.5rem);
 }
 
 .user-header {
@@ -252,4 +280,52 @@ figcaption {
   color: var(--text-color);
   font-size: 1.6rem;
 }
+
+/* loading */
+.loading {
+  width: 13rem;
+  aspect-ratio: 1;
+  position: relative;
+}
+.loading:before,
+.loading:after {
+  content: "";
+  position: absolute;
+  border-radius: 5rem;
+  box-shadow: 0 0 0 0.5rem inset var(--text-color);
+  animation: loadingCycle ease-in-out 2.5s infinite;
+}
+.loading:after {
+  animation-delay: -1.25s;
+}
+@keyframes loadingCycle {
+  0% {
+    inset: 0 7rem 7rem 0;
+  }
+  12.5% {
+    inset: 0 7rem 0 0;
+  }
+  25% {
+    inset: 7rem 7rem 0 0;
+  }
+  37.5% {
+    inset: 7rem 0 0 0;
+  }
+  50% {
+    inset: 7rem 0 0 7rem;
+  }
+  62.5% {
+    inset: 0 0 0 7rem;
+  }
+  75% {
+    inset: 0 0 7rem 7rem;
+  }
+  87.5% {
+    inset: 0 0 7rem 0;
+  }
+  100% {
+    inset: 0 7rem 7rem 0;
+  }
+}
+
 </style>
