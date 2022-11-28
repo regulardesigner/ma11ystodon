@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: './ma11stodon/'
+  publicPath: '/ma11ystodon/'
 };
