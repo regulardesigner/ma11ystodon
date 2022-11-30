@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import axios from "axios";
+import router from "./router";
 
 import Default from "./App.vue";
 
@@ -11,5 +12,7 @@ const axiosInstance = axios.create({
 });
 
 app.config.globalProperties.$axios = { ...axiosInstance };
+
+app.use(router)
 
 app.mount("#app");
