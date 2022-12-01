@@ -1,6 +1,6 @@
 <template>
   <header class="mallystodon">  
-    <h1 class="heading">{{ `M${search}stodon` }}</h1>
+    <h1 class="heading"><router-link to="/ma11ystodon">{{ `M${search}Stodon` }}</router-link></h1>
 
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">
@@ -18,7 +18,7 @@
       </form>
       
       <ul class="tags">
-        <li class="tag medium" v-for="tag in searched" :key="tag">{{ tag }}</li>
+        <li class="tag medium" v-for="tag in searched" :key="tag"><a :href="`/ma11ystodon/tags/${tag}`">{{ tag }}</a></li>
       </ul>
 
     </div>
@@ -173,6 +173,11 @@ header.mallystodon {
   color: var(--background-color);
 }
 
+.tag a {
+  color: var(--background-color);
+  text-decoration: none;
+}
+
 .tag:not(:last-child) {
   margin-right: 0.5rem;
 }
@@ -259,6 +264,14 @@ figcaption {
   color: var(--text-color);
   font-size: 2.2rem;
   line-height: 3.2rem;
+}
+
+.text--color-light {
+  color: var(--text-color);
+}
+
+.text--color-dark {
+  color: var(--background-color);
 }
 
 .is-loading {
