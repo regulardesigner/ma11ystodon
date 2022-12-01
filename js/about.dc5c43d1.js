@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(n,t,o){"use strict";o.r(t);var e=o("7a23");function c(n,t,o,c,u,s){return Object(e["p"])(),Object(e["d"])("h1",null,"About this mastodon client")}const u={};u.render=c;t["default"]=u}}]);
-//# sourceMappingURL=about.dc5c43d1.js.map
