@@ -49,7 +49,7 @@ export default {
       const myUserId = '109389638020491291'
 
       await this.$axios.get(
-        `https://mastodon.social/api/v1/accounts/${myUserId}/statuses?tagged=MyMastodonCLI`
+        `https://mastodon.social/api/v1/accounts/${myUserId}/statuses?tagged=DamsMastCli`
       ).then(resp => {
         this.toots = resp.data
         this.isLoading = false
