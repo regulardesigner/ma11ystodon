@@ -1,6 +1,6 @@
 <template>
   <header class="mallystodon">  
-    <h1 class="heading"><router-link to="/ma11ystodon">{{ `M${search}Stodon` }}</router-link></h1>
+    <h1 class="heading"><router-link :to="{ name: 'home' }">{{ `M${search}Stodon` }}</router-link></h1>
 
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">

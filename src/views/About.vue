@@ -1,7 +1,7 @@
 <template>
 
   <header class="mallystodon">  
-    <h1 class="heading"><router-link title="Go back to the home page" to="/ma11ystodon">Ma11ystodon</router-link></h1>
+    <h1 class="heading"><router-link title="Go back to the home page" :to="{ name: 'home' }">Ma11ystodon</router-link></h1>
 
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">

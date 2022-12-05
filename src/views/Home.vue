@@ -1,6 +1,6 @@
 <template>
   <header class="mallystodon">  
-    <h1 class="heading"><router-link to="/ma11ystodon">{{ `M${search}Stodon` }}</router-link></h1>
+    <h1 class="heading"><router-link :to="{ name: 'home' }">{{ `M${search}Stodon` }}</router-link></h1>
 
     <div class="switch">
       <input type="checkbox" name="switch" id="switch">
@@ -18,7 +18,7 @@
       </form>
       
       <ul class="tags">
-        <li class="tag medium" v-for="tag in searched" :key="tag"><a :href="`/ma11ystodon/tags/${tag}`">{{ tag }}</a></li>
+        <li class="tag medium" v-for="tag in searched" :key="tag"><router-link :to="{ name: 'tags', params: { id: tag } }">{{ tag }}</router-link></li>
       </ul>
 
     </div>
