@@ -1,12 +1,5 @@
 <template>
-  <header class="mallystodon">  
-    <h1 class="heading"><router-link :to="{ name: 'home' }">{{ `M${search}Stodon` }}</router-link></h1>
-
-    <div class="switch">
-      <input type="checkbox" name="switch" id="switch">
-      <label for="switch">Color theme inverter</label>
-    </div>
-  </header>
+  <Header :search='search' />
   
   <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading toots…</span>
 
@@ -27,8 +20,14 @@
 </template>
 
 <script>
+import Header from '../components/Header'
+
 export default {
   name: "App",
+
+  components: {
+    Header,
+  },
 
   data() {
     return {

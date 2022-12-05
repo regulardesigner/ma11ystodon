@@ -1,12 +1,5 @@
 <template>
-  <header class="mallystodon">  
-    <h1 class="heading"><router-link :to="{ name: 'home' }">{{ `M${search}Stodon` }}</router-link></h1>
-
-    <div class="switch">
-      <input type="checkbox" name="switch" id="switch">
-      <label for="switch">Color theme inverter</label>
-    </div>
-  </header>
+  <Header :search='search' />
   
   <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading toots…</span>
 
@@ -38,8 +31,14 @@
 </template>
 
 <script>
+import Header from '../components/Header'
+
 export default {
   name: "App",
+
+  components: {
+    Header,
+  },
 
   data() {
     return {
@@ -103,12 +102,6 @@ body:has(input[type="checkbox"]:checked) {
    --text-color: #2b584f;
 }
 
-header.mallystodon {
-  display: flex;
-  margin-bottom: 2.4rem;
-  justify-content: space-between;
-}
-
 .search-form {
   display: flex;
   margin-bottom: 1.6rem;
@@ -132,27 +125,6 @@ header.mallystodon {
   color: var(--background-color);
   background-color: var(--text-color);
 } 
-
-.switch {
-  padding: 0.6rem;
-  display: inline-flex;
-  border-radius: 0.3rem;
-  flex-direction: row;
-  align-items: center;
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-.switch input#switch {
-  margin: 0 0.4rem 0 0;
-  padding: 0;
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
-.switch label {
-  font-size: 1.4rem;
-}
 
 .tags {
   display: inline-flex;

@@ -1,13 +1,6 @@
 <template>
 
-  <header class="mallystodon">  
-    <h1 class="heading"><router-link title="Go back to the home page" :to="{ name: 'home' }">Ma11ystodon</router-link></h1>
-
-    <div class="switch">
-      <input type="checkbox" name="switch" id="switch">
-      <label for="switch">Color theme inverter</label>
-    </div>
-  </header>
+  <Header search='About' />
 
   <h1 class="heading">About this mastodon client</h1>
 
@@ -32,12 +25,18 @@
 </template>
 
 <script>
+import Header from '../components/Header'
+
 export default {
   data() {
     return {
       toots: undefined,
       isLoading: true,
     }
+  },
+
+  components: {
+    Header,
   },
 
   mounted () {
