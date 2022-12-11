@@ -42,7 +42,7 @@ export default {
 
   data() {
     return {
-      search: 'a11y',
+      search: 'accessibility',
       searched: [],
       toots: undefined,
       tootsCount: 0,
@@ -225,6 +225,11 @@ figcaption {
 .attachment-image {
   width: 100%;
   height: auto;
+}
+
+.small {
+  font-size: 1.2rem;
+  line-height: auto;
 }
 
 .medium {

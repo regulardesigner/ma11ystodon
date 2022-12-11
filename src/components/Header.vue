@@ -1,7 +1,7 @@
 <template>
   <header class="mallystodon">  
     <h1 class="heading">
-      <router-link :to="{ name: 'home' }">{{ `M${search}Stodon` }}</router-link>
+      <router-link :to="{ name: 'home' }">Ally <sup class="small">for Mastodon</sup></router-link>
       <span>
         | <router-link class="medium" :to="{ name: 'about' }">About</router-link>
       </span>
