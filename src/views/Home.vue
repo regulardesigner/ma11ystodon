@@ -1,9 +1,9 @@
 <template>
   <Header :search='search' />
   
-  <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading toots…</span>
+  <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading container…</span>
 
-  <section v-if="!isLoading" class="toots">
+  <section v-if="!isLoading" class="container">
     <div class="search">
       <form class="search-form" @submit.prevent="handleTagSeach">
         <input class="search-form--input" type="text" v-model="search">
@@ -187,7 +187,7 @@ a {
   hyphens: auto;
 }
 
-.toots {
+.container {
   max-width: 50rem;
   margin: 0 auto;
 }

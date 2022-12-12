@@ -1,9 +1,9 @@
 <template>
   <Header :search='search' />
   
-  <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading toots…</span>
+  <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading container…</span>
 
-  <section v-if="!isLoading" class="toots">
+  <section v-if="!isLoading" class="container">
     <article class="toot" v-for="toot in toots" :key="toot.id">
     <header class="user-header">
       <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
@@ -198,7 +198,7 @@ a {
   hyphens: auto;
 }
 
-.toots {
+.container {
   max-width: 50rem;
   margin: 0 auto;
 }
