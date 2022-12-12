@@ -12,10 +12,11 @@
       official Mastodon client, while retaining the core features of this
       social network.
     </p>
+    
     <p class="medium text--color-light">
-      The project is open to suggestions for new features
-      and will be gradually updated.
+      The project is open to suggestions and will be gradually updated.
     </p>
+
     <p class="medium text--color-light">Here some toots about this project.</p>
   </section>
   

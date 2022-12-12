@@ -33,6 +33,7 @@ export default {
     return {
       search: this.$route.params.id,
       searched: [],
+      trends: undefined,
       toots: undefined,
       tootsCount: 0,
       isLoading: true,
@@ -40,7 +41,8 @@ export default {
   },
 
   async mounted() {
-     this.mastodonTagSearch(this.search)
+    this.mastodonTrendingTags()
+    this.mastodonTagSearch(this.search)
   },
 
   methods: {
@@ -69,6 +71,19 @@ export default {
 
     addTagToSearchedList(tag) {
       this.searched.unshift(tag)
+    },
+
+    async mastodonTrendingTags() {
+      await this.$axios.get(
+        'https://mastodon.social/api/v1/trends/tags'
+      ).then(resp => {
+        this.trends = resp.data
+        // const trendsTags = resp.data
+        
+        // trendsTags.forEach(trends => {
+        //   this.searched.push(trends.name);
+        // });
+      })
     }
   }
 };
