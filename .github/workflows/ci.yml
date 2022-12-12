@@ -42,10 +42,12 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Generate env
+        env:
+          VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
+          VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
+          VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
         run: |
-          echo VUE_APP_CLIENT_ID=${{ secrets.VUE_APP_CLIENT_ID }} >> .env
-          echo VUE_APP_CLIENT_SECRET=${{ secrets.VUE_APP_CLIENT_SECRET }} >> .env
-          echo VUE_APP_GRANT_TYPE=${{ secrets.VUE_APP_GRANT_TYPE }} >> .env
+          echo $VUE_APP_CLIENT_ID $VUE_APP_CLIENT_SECRET $VUE_APP_GRANT_TYPE.
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
