@@ -56,8 +56,6 @@ jobs:
           VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
           VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
           VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
-        run: |
-          echo $VUE_APP_CLIENT_ID $VUE_APP_CLIENT_SECRET $VUE_APP_GRANT_TYPE.
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
