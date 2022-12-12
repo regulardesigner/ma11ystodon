@@ -9,6 +9,11 @@ on:
       - master
       - release
 
+env:
+  VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
+  VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
+  VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
+
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
