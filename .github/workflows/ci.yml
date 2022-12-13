@@ -52,12 +52,11 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        env:
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
           VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
           VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 
 #      - name: Run tests 🧪
