@@ -52,10 +52,7 @@ jobs:
           VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
           VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
           VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
-        run: | 
-          yarn build
-          echo github_token: ${{ secrets.GITHUB_TOKEN }} client_id: ${{ secrets.VUE_APP_CLIENT_ID }} client_secret: ${{ secrets.VUE_APP_CLIENT_SECRET }}
-        
+        run: yarn build        
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
