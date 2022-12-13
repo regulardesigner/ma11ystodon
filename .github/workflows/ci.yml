@@ -40,6 +40,12 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      
+      - name: Generate environement vars 📝
+        run: |
+          echo VUE_APP_CLIENT_ID=${{ secrets.VUE_APP_CLIENT_ID }} >> .env
+          echo VUE_APP_CLIENT_SECRET=${{ secrets.VUE_APP_CLIENT_SECRET }} >> .env
+          echo VUE_APP_GRANT_TYPE=${{ secrets.VUE_APP_GRANT_TYPE }} >> .env
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
@@ -54,9 +60,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
-          VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
-          VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
           publish_dir: ./dist
 
 #      - name: Run tests 🧪
