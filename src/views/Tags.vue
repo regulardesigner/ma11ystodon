@@ -90,6 +90,7 @@ export default {
 </script>
 
 <style>
+/** need to be refactored */
 html {
   font-size: 62.5%;
 }
