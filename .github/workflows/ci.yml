@@ -52,15 +52,17 @@ jobs:
           VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
           VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
           VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
-        run: yarn build
+        run: | 
+          yarn build
+          echo github_token: ${{ secrets.GITHUB_TOKEN }} client_id: ${{ secrets.VUE_APP_CLIENT_ID }}
         
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
-          folder: ./dist
+          publish_dir: ./dist
 
 #      - name: Run tests 🧪
 #        run: yarn test
