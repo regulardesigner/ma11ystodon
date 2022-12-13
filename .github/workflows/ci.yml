@@ -51,10 +51,10 @@ jobs:
         run: | 
           yarn build
           touch .env
-          echo 'VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}' >> .env
-          echo 'VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}' >> .env
-          echo 'VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}' >> .env
-          echo "Vars: ${{ secrets.VUE_APP_GRANT_TYPE }}, ${{ secrets.VUE_APP_CLIENT_SECRET }}, ${{ secrets.VUE_APP_CLIENT_ID }}"
+          echo VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }} >> .env
+          echo VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }} >> .env
+          echo VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }} >> .env
+          echo Vars: ${{ secrets.VUE_APP_GRANT_TYPE }}, ${{ secrets.VUE_APP_CLIENT_SECRET }}, ${{ secrets.VUE_APP_CLIENT_ID }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
