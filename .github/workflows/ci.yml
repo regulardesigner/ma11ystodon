@@ -48,18 +48,18 @@ jobs:
         run: yarn lint
 
       - name: Generate Static Assets & env 🦾
-        run: | 
-          yarn build
-          touch .env
-          echo VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }} >> .env
-          echo VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }} >> .env
-          echo VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }} >> .env
-          echo Vars: ${{ secrets.VUE_APP_GRANT_TYPE }}, ${{ secrets.VUE_APP_CLIENT_SECRET }}, ${{ secrets.VUE_APP_CLIENT_ID }}
+        env:
+          VUE_APP_CLIENT_ID: ${{ secrets.VUE_APP_CLIENT_ID }}
+          VUE_APP_CLIENT_SECRET: ${{ secrets.VUE_APP_CLIENT_SECRET }}
+          VUE_APP_GRANT_TYPE: ${{ secrets.VUE_APP_GRANT_TYPE }}
+        run: yarn build
+        
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
           publish_dir: ./dist
 
 #      - name: Run tests 🧪
