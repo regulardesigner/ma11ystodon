@@ -1,11 +1,12 @@
 <template>
   <header class="mallystodon">  
-    <h1 class="heading">
-      <router-link :to="{ name: 'home' }">Ally <sup class="small">for Mastodon</sup></router-link>
-      <span>
-        | <router-link class="medium" :to="{ name: 'about' }">About</router-link>
-      </span>
-    </h1>
+    <nav>
+      <ul class="navigation">
+        <li><h1><router-link  class="heading" name="back to home page" :to="{ name: 'home' }">Ally <sup class="small">for Mastodon</sup></router-link></h1></li>
+        <li><router-link class="medium button" :to="{ name: 'about' }">About</router-link></li>
+      </ul>
+    </nav>
+    
 
     <div class="switch">
       <input type="checkbox" :checked="userSettings.getThemeSetting" @change="userSettings.themeSwitcher()" name="switch" id="switch">
@@ -68,5 +69,28 @@ header.mallystodon {
 
 .switch label {
   font-size: 1.4rem;
+}
+
+.navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigation h1 {
+  margin: 0;
+}
+
+.navigation > li {
+  display: inline-block;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
+.navigation .button {
+  padding: .4rem .6rem;
+  border-radius: .5rem;
+  color: var(--background-color);
+  background-color: var(--text-color);
 }
 </style>

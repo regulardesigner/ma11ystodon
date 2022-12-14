@@ -5,7 +5,7 @@
 
   <section v-if="!isLoading" class="container">
     <div class="search">
-      <form class="search-form" @submit.prevent="handleTagSeach">
+      <form role="search" class="search-form" @submit.prevent="handleTagSeach">
         <input class="search-form--input" type="text" v-model="search">
         <input class="search-form--submit" type="submit" value="search">
       </form>
@@ -15,18 +15,21 @@
       </ul>
 
     </div>
-    <article class="toot" v-for="toot in toots" :key="toot.id">
-    <header class="user-header">
-      <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
-    </header>
 
-    <div class="large" v-html="toot.content"></div>
+    <main>
+      <article class="toot" v-for="toot in toots" :key="toot.id">
+        <header class="user-header">
+          <img class="avatar" width="32" height="32" :src="toot.account.avatar" :alt="toot.account.username"><strong>{{toot.account.display_name || toot.account.username}}</strong> - @{{toot.account.username}}
+        </header>
 
-    <figure v-if="toot.media_attachments.length != 0 && toot.media_attachments[0].type === 'image'">
-      <img class="attachment-image" :src="toot.media_attachments[0].preview_url" :alt="toot.media_attachments[0].description">
-      <figcaption class="medium">{{ toot.media_attachments[0].description }}</figcaption>
-    </figure>
-  </article>
+        <div class="large" v-html="toot.content"></div>
+
+        <figure v-if="toot.media_attachments.length != 0 && toot.media_attachments[0].type === 'image'">
+          <img class="attachment-image" :src="toot.media_attachments[0].preview_url" :alt="toot.media_attachments[0].description">
+          <figcaption class="medium">{{ toot.media_attachments[0].description }}</figcaption>
+        </figure>
+      </article>
+    </main>
   </section>
 </template>
 
@@ -38,6 +41,15 @@ export default {
 
   components: {
     Header,
+  },
+
+  metaInfo: {
+    title: 'My Example App',
+    titleTemplate: '%s - Yay!',
+    htmlAttrs: {
+      lang: 'en',
+      amp: true
+    }
   },
 
   data() {
