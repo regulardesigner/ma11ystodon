@@ -31,12 +31,7 @@ export default {
 
   methods: {
     handleUserLogin() {
-      console.log('User Login', this.instanceUrl)
-
-      const uri = `https://${this.instanceUrl}/oauth/authorize?client_id=${process.env.VUE_APP_CLIENT_ID}&response_type=code&scope=read+write+follow+push&redirect_uri=${process.env.VUE_APP_URI}`
-      
-      console.log('test user auth', uri)
-      window.location.assign(uri)
+      window.location.assign(`https://${this.instanceUrl}/oauth/authorize?client_id=${process.env.VUE_APP_CLIENT_ID}&response_type=code&scope=read+write+follow+push&redirect_uri=${process.env.VUE_APP_URI}`)
     },
   },
 }
