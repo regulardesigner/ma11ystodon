@@ -1,7 +1,7 @@
 {
   "homepage": "https://regulardesigner.github.io/ma11ystodon",
   "name": "ally_for_mastodon",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --open",
