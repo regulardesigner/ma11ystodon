@@ -14,7 +14,7 @@ export default {
         client_id: process.env.VUE_APP_CLIENT_ID,
         client_secret: process.env.VUE_APP_CLIENT_SECRET,
         grant_type: process.env.VUE_APP_GRANT_TYPE,
-        redirect_uri: "urn:ietf:wg:oauth:2.0:oob"
+        redirect_uri: process.env.VUE_APP_URI,
       }).then(resp => this.addTokenToLocalStorage(resp.data))
     },
 
