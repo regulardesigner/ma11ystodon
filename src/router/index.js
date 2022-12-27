@@ -1,12 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home'
+import Login from '../views/Login'
 import Tags from '../views/Tags'
+import PageNotFound from '../views/PageNotFound'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/about',
@@ -20,10 +27,16 @@ const routes = [
     path: '/tags/:id',
     name: 'tags',
     component: Tags
+  },
+  {
+    // path: "*",
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: PageNotFound
   }
 ]
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 export default router

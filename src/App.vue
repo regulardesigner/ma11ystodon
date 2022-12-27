@@ -4,13 +4,13 @@
 
 <script>
 export default {
-  async mounted () {
-    this.getAppToken();
+  mounted () {
+    this.getAppToken()
   },
 
   methods: {
     getAppToken() {
-      this.$axios.post('https://mastodon.social/oauth/token', {
+      this.$axios.post('/oauth/token', {
         client_id: process.env.VUE_APP_CLIENT_ID,
         client_secret: process.env.VUE_APP_CLIENT_SECRET,
         grant_type: process.env.VUE_APP_GRANT_TYPE,

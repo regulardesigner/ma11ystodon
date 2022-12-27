@@ -1,6 +1,6 @@
 <template>
   <Header :search='search' />
-  
+ 
   <span class="is-loading" v-if="isLoading"><div class="loading"></div>Loading container…</span>
 
   <section v-if="!isLoading" class="container">
@@ -64,6 +64,8 @@ export default {
 
   async mounted() {
      this.mastodonTagSearch(this.search)
+     this.getAuthUserCode(this.$route.query.code)
+     this.getLoggedAccountDetail()
   },
 
   methods: {
@@ -92,6 +94,16 @@ export default {
 
     addTagToSearchedList(tag) {
       this.searched.unshift(tag)
+    },
+
+    getAuthUserCode(code) {
+      // simple if statement to store the use auth code
+      if (code) localStorage.auth_code = code
+      else return
+    },
+
+    async getLoggedAccountDetail() {
+      await this.$axios.get('/api/v1/accounts/verify_credentials')
     }
   }
 };

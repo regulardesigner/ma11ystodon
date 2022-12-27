@@ -38,6 +38,10 @@
         <figcaption class="medium">{{ toot.media_attachments[0].description }}</figcaption>
       </figure>
     </article>
+
+    <footer>
+      <router-link class="medium" :to="{ name: 'login' }">login</router-link>
+    </footer>
   </section>
 </template>
 
@@ -74,14 +78,15 @@ export default {
     },
 
     tootDate(date) {
-      const today = Date.now()
       const tootCreatedDate = new Date(date)
+      
       const formatedTootDate = Intl.DateTimeFormat('en-US', { dateStyle: 'short' }).format(tootCreatedDate)
+      
       const formatedTootTime = Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric' }).format(tootCreatedDate)
       
       let tootDateReturn = ''
 
-      if (this.hasBeenCreatedToday(today, tootCreatedDate)) {
+      if (this.hasBeenCreatedToday(Date.now(), tootCreatedDate)) {
         tootDateReturn = `Today at ${formatedTootTime}`
       } else {
         tootDateReturn = formatedTootDate
@@ -91,9 +96,7 @@ export default {
     },
 
     hasBeenCreatedToday(today, toot) {
-      const todayDate = new Date(today)
-      const tootDate = new Date(toot)
-      return todayDate.getDate() === tootDate.getDate()
+      return new Date(today).getDate() === new Date(toot).getDate()
     }
   },
 }

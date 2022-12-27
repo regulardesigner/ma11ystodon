@@ -75,7 +75,7 @@ export default {
 
     async mastodonTrendingTags() {
       await this.$axios.get(
-        'https://mastodon.social/api/v1/trends/tags'
+        '/api/v1/trends/tags'
       ).then(resp => {
         this.trends = resp.data
         // const trendsTags = resp.data
